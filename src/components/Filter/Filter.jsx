@@ -1,23 +1,19 @@
-import { Component } from 'react';
 import styles from './Filter.module.css';
 
-class Filter extends Component {
-  handleFilterChange = e => {
-    this.props.handleFilterChange(e.target.value);
+const Filter = ({ filter, handleFilterChange }) => {
+  const handleChange = e => {
+    handleFilterChange(e.target.value);
   };
 
-  render() {
-    const { filter } = this.props;
-    return (
-      <input
-        type="text"
-        placeholder="Search contacts"
-        value={filter}
-        onChange={this.handleFilterChange}
-        className={styles.input}
-      />
-    );
-  }
-}
+  return (
+    <input
+      type="text"
+      placeholder="Search contacts"
+      value={filter}
+      onChange={handleChange}
+      className={styles.input}
+    />
+  );
+};
 
 export default Filter;

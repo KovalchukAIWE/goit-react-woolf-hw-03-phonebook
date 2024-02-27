@@ -11,11 +11,9 @@ class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    const { contacts } = this.props;
+    const { checkExistingContact, addContact } = this.props;
 
-    const existingContact = contacts.find(contact => contact.name === name);
-
-    if (existingContact) {
+    if (checkExistingContact(name)) {
       alert(`${name} is already in contacts`);
     } else if (name.trim() !== '' && number.trim() !== '') {
       const newContact = {
@@ -24,7 +22,7 @@ class ContactForm extends Component {
         number: number,
       };
 
-      this.props.addContact(newContact);
+      addContact(newContact);
 
       this.setState({
         name: '',
